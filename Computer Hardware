@@ -1,0 +1,147 @@
+import java.util.ArrayList;
+import java.util.Scanner;
+
+class ComputerHardware {
+  int code;
+  String name;
+  String peripheral;
+  String assigned;
+
+  ComputerHardware(int code, String name, String peripheral, String assigned) {
+    this.code = code;
+    this.name = name;
+    this.peripheral = peripheral;
+    this.assigned = assigned;
+  }
+}
+
+public class Main {
+  static ArrayList<ComputerHardware> records = new ArrayList<>();
+
+  public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+
+    while (true) {
+      System.out.println("1. Add record");
+      System.out.println("2. View record");
+      System.out.println("3. Edit record");
+      System.out.println("4. Delete record");
+      System.out.println("5. Report");
+      System.out.println("6. Exit");
+      System.out.print("Enter your choice: ");
+
+      int choice = sc.nextInt();
+      sc.nextLine();
+
+      if (choice == 1) {
+        add();
+      } else if (choice == 2) {
+        view();
+      } else if (choice == 3) {
+        edit();
+      } else if (choice == 4) {
+        delete();
+      } else if (choice == 5) {
+        report ();
+      } else if (choice == 6) {
+        break;
+      } else {
+        System.out.println("Invalid choice");
+      }
+    }
+  }
+
+  static void add() {
+    Scanner sc = new Scanner(System.in);
+
+    System.out.print("Enter the Code: ");
+    int code = sc.nextInt();
+    sc.nextLine();
+
+    System.out.print("Enter the Name: ");
+    String name = sc.nextLine();
+
+    System.out.print("Enter the Peripheral: ");
+    String peripheral = sc.nextLine();
+
+    System.out.print("Assigned To: ");
+    String assigned = sc.nextLine();
+
+    ComputerHardware record = new ComputerHardware(code, name, peripheral, assigned);
+    records.add(record);
+
+    System.out.println("Record created successfully");
+  }
+
+  static void view() {
+    Scanner sc = new Scanner(System.in);
+
+    System.out.print("Enter the Code: ");
+    int code = sc.nextInt();
+
+    for (ComputerHardware record : records) {
+      if (record.code == code) {
+        System.out.println("Code: " + record.code);
+        System.out.println("Name: " + record.name);
+        System.out.println("Peripheral: " + record.peripheral);
+        System.out.println("Assigned To: " + record.assigned);
+        return;
+      }
+    }
+
+    System.out.println("Record not found");
+  }
+
+  static void edit() {
+    Scanner sc = new Scanner(System.in);
+
+    System.out.print("Enter the Code: ");
+    int code = sc.nextInt();
+    sc.nextLine();
+
+  for (ComputerHardware record : records) {
+  if (record.code == code) {
+  System.out.print("Enter the new name: ");
+  record.name = sc.nextLine();
+
+  System.out.print("Enter the new peripherals: ");
+  record.peripheral = sc.nextLine();
+
+  System.out.print("Enter the new assigned: ");
+  record.assigned = sc.nextLine();
+
+  System.out.println("Record updated successfully");
+  return;
+}
+    
+  static void delete() {
+  Scanner sc = new Scanner(System.in);
+
+  System.out.print("Enter the Code: ");
+  int code = sc.nextInt();
+
+  for (int i = 0; i < records.size(); i++) {
+    if (records.get(i).code == code) {
+      records.remove(i);
+      System.out.println("Record deleted successfully");
+      return;
+    }
+  }
+
+  System.out.println("Record not found");
+}
+  static void report() {
+  System.out.println("Total records: " + records.size());
+  for (ComputerHardware record : records) {
+    System.out.println("Code: " + record.code);
+    System.out.println("Name: " + record.name);
+    System.out.println("Peripheral: " + record.peripheral);
+    System.out.println("Assigned: " + record.assigned);
+    System.out.println("-----------------------------");
+  }
+}
+}
+
+
+
+  
